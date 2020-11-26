@@ -25,10 +25,10 @@ node{
    }
    stage('Nexus Image Push'){
    sh "docker login -u admin -p admin123 13.234.29.71:8083"
-   sh "docker tag kamesh20/myproject 13.234.29.71:8083/kamesh:1.0.2"
-   sh 'docker push 13.234.29.71:8083/kamesh:1.0.2'
+   sh "docker tag kamesh20/myproject 13.234.29.71:8083/kamesh:1.0.0"
+   sh 'docker push 13.234.29.71:8083/kamesh:1.0.0'
    }
-    stage('Remove Previous Container'){
+   stage('Remove Previous Container'){
 	try{
 		sh 'docker rm -f tomcattest'
 	}catch(error){
@@ -37,5 +37,5 @@ node{
    stage('Docker deployment'){
    sh 'docker run -d -p 8090:8080 --name tomcattest kamesh20/myproject' 
    }
-   }
+}
 }
